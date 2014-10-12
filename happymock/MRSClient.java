@@ -42,7 +42,7 @@ public class MRSClient {
             }
         });
         // 发起异步连接操作
-         ChannelFuture  f = b.connect(new InetSocketAddress(port)).sync();
+         ChannelFuture  f = b.connect(new InetSocketAddress(host,port)).sync();
          f.channel().closeFuture().sync();
         }finally {
             // 优雅退出，释放NIO线程组
@@ -53,7 +53,7 @@ public class MRSClient {
 
     public static void main(String[] args){
         try {
-            new MRSClient().connect("www.sina.com",80);
+            new MRSClient().connect("127.0.0.1",8080);
         } catch (Exception e) {
             e.printStackTrace();
         }
